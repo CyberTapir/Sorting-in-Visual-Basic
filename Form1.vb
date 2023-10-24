@@ -1,4 +1,6 @@
-﻿Public Class Form1
+﻿Imports System.DirectoryServices.ActiveDirectory
+
+Public Class Form1
     Dim arr As Integer() = {0, 24, 12, 16, 32, 41, 22}
     'Bubble sort
     Private Sub BubbleSort()
@@ -40,6 +42,22 @@
         End While
         printArray()
     End Sub
+    Private Sub InsertionSort()
+        Dim First As Integer = 1
+        Dim Last As Integer = arr.Length - 1 ' Adjust Last to the actual last index
+        Dim PositionOfnextItem As Integer = First + 1 ' Initialize PositionOfnextItem to the second element
+        While PositionOfnextItem <= Last
+            Dim nextItem As Integer = arr(PositionOfnextItem)
+            Dim Current As Integer = PositionOfnextItem - 1 ' Initialize Current to the previous index
+            While Current >= First AndAlso nextItem < arr(Current)
+                arr(Current + 1) = arr(Current)
+                Current = Current - 1
+            End While
+            arr(Current + 1) = nextItem
+            PositionOfnextItem = PositionOfnextItem + 1
+        End While
+        printArray()
+    End Sub
     Private Sub Swap(ByRef A As Integer, ByRef B As Integer)
         Dim Temp As Integer
         Temp = A
@@ -49,7 +67,8 @@
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'BubbleSort()
-        SelectionSort()
+        'SelectionSort()
+        InsertionSort()
     End Sub
     Private Sub printArray()
         For i = 1 To 6
