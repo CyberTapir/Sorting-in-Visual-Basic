@@ -1,7 +1,7 @@
 ﻿Imports System.DirectoryServices.ActiveDirectory
 
 Public Class Form1
-    Dim arr As Integer() = {0, 24, 12, 16, 32, 41, 22}
+    Dim arr As Integer() = {0, 0, 0, 0, 0, 0, 0}
     'Bubble sort
     Private Sub BubbleSort()
         Dim Last As Integer
@@ -66,13 +66,28 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'BubbleSort()
-        'SelectionSort()
+        randNums()
+        BubbleSort()
+        randNums()
+        SelectionSort()
+        randNums()
         InsertionSort()
     End Sub
     Private Sub printArray()
-        For i = 1 To 6
-            ListBox1.Items.Add(arr(i))
+        Dim resultString As String = ""
+        For i As Integer = 1 To 6
+            resultString &= arr(i).ToString() & " "
         Next i
+        'For i = 1 To 6
+        '    ListBox1.Items.Add(arr(i))
+        'Next i
+        ListBox1.Items.Add(resultString)
+    End Sub
+    Private Sub randNums()
+
+        For i = 1 To 6
+            arr(i) = Rnd() * 100
+        Next i
+        printArray()
     End Sub
 End Class
